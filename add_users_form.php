@@ -2,9 +2,6 @@
 
 session_start();
 
-$get_user_id = $_SESSION['user_id'];
-
-
 
 ?>
 
@@ -18,30 +15,45 @@ $get_user_id = $_SESSION['user_id'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
 
-<style>
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
-</style>
+<style>   
+Body {  
+  font-family: Calibri, Helvetica, sans-serif;   
+}  
+button {   
+        background-color: #4CAF50;   
+        width: 100%;  
+        color: white;   
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+         }   
+ form {   
+        border: 3px solid #f1f1f1;   
+    }   
+ input[type=text], input[type=password] {   
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid green;   
+        box-sizing: border-box;   
+    }  
+ button:hover {   
+        opacity: 0.7;   
+    }   
+  .cancelbtn {   
+        width: auto;   
+        padding: 10px 18px;  
+        margin: 10px 5px;  
+    }   
+        
+     
+ .container {   
+        padding: 25px;   
+        background-color: lightblue;  
+    }   
+</style>  
 
   </head>
 
@@ -59,7 +71,7 @@ $get_user_id = $_SESSION['user_id'];
         <h3>Coding <span>Snow 123</span></h3>
       </div>
       <div class="right_area">
-        <a href="logout.php" class="logout_btn" style="padding:10px;">Logout</a>
+        <a href="login.php" class="logout_btn" style="padding:10px;">Logout</a>
       </div>
     </header>
     <!--header area end-->
@@ -83,7 +95,7 @@ $get_user_id = $_SESSION['user_id'];
     <div class="sidebar">
       <div class="profile_info">
         <img src="1.png" class="profile_image" alt="">
-        <h4><?php echo $_SESSION['user_name']; ?></h4>
+        <h4><?php //echo $_SESSION['user_name']; ?>Jessica</h4>
       </div>
       <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
       <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
@@ -97,72 +109,23 @@ $get_user_id = $_SESSION['user_id'];
     <div class="content">
       <div class="card">
         <br>
-         <a href="add_users_form.php"> Add Users </a>
-         <br><br>
-       <table id="customers">
-          <tr>
-            <th>User Name</th>
-            <th>User Age</th>
-            <th>User Phonenumber</th>
-            <th></th>
-          </tr>
-
-          <?php 
-
-          $conn = mysqli_connect('localhost','root','','senior_citizen');
-          $sql = "SELECT * FROM users";
-          $result = mysqli_query($conn,$sql);
-
-
-          while($row = mysqli_fetch_assoc($result)) {
-
-          ?>
-
-          <tr>
-            <td><?php echo $row['user_name'];?></td>
-            <td><?php echo $row['user_age'];?></td>
-            <td><?php echo $row['user_phonenumber'];?></td>
-            <td>
-                <a href="edit_users_form.php?edit=<?php echo $row['user_id'] ?>">EDIT</a>
-                <a href="backend/delete_user.php?delete=<?php echo $row['user_id'] ?>">DELETE</a>
-            </td>
-          </tr>
-
-        <?php } ?>
-
-          </table>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="card">
-       <table id="customers">
-          <tr>
-            <th>Pension Name</th>
-            <th>Pension Amount</th>
-           </tr>
-
-          <?php 
-
-          $sql = "SELECT * FROM pension
-          JOIN users 
-          ON pension.user_id = users.user_id
-          WHERE pension.user_id = '$get_user_id'";
-          $result = mysqli_query($conn,$sql);
-
-
-          while($row = mysqli_fetch_assoc($result)) {
-
-          ?>
-
-          <tr>
-            <td><?php echo $row['pension_name'];?></td>
-            <td><?php echo $row['pension_amount'];?></td>
-          </tr>
-
-        <?php } ?>
-
-          </table>
+         <a href="index.php"> Return Back To Index </a>
+         <br><br><br>
+      <form action="backend/add_user.php" method="POST">  
+          <div class="container">   
+               <label>Add Username: </label>   
+               <input type="text" placeholder="Enter Username" name="username">  
+               <label>Add Password </label>   
+               <input type="password" placeholder="Enter Password" name="password">  
+                <label>Add Name </label>   
+               <input type="text" placeholder="Enter Name" name="name"> 
+                 <label>Add Age </label>   
+               <input type="text" placeholder="Enter Age" name="age"> 
+                 <label>Add Phonenumber </label>   
+               <input type="text" placeholder="Enter Phonenumber" name="phonenumber"> 
+               <button type="submit" name="addBtn">Submit</button>   
+          </div>   
+       </form>  
       </div>
     </div>
 
