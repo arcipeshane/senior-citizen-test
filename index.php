@@ -53,7 +53,7 @@ session_start();
         <i class="fas fa-bars" id="sidebar_btn"></i>
       </label>
       <div class="left_area">
-        <h3>Coding <span>Snow</span></h3>
+        <h3>Coding <span>Snow 123</span></h3>
       </div>
       <div class="right_area">
         <a href="login.php" class="logout_btn" style="padding:10px;">Logout</a>
